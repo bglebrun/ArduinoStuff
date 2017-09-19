@@ -10,10 +10,10 @@ Original code improvements to the Ping sketch sourced from Trollmaker.com
 Some code and wiring inspired by http://en.wikiversity.org/wiki/User:Dstaub/robotcar
 */ 
  
-#define trigPin 13
-#define echoPin 12
-#define led 11
-#define led2 10 
+const int trigPin = 13;
+const int echoPin = 12;
+const int led = 11;
+const int led2 = 10; 
  
 void setup() {
   Serial.begin (9600);
