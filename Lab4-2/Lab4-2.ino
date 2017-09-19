@@ -2,6 +2,7 @@
 const int LeftMotorSpeedPin = 5;
 const int LeftMotorControlA3Pin =  10;
 const int LeftMotorControlA4Pin =  9;
+
 const int RightMotorSpeedPin = 6;
 const int RightMotorControlA1Pin =  8;
 const int RightMotorControlA2Pin =  7;
@@ -53,6 +54,27 @@ void hBridge (motorType motor, controlType control) {
       }
     case RIGHT_MOTOR:
      /* Your code here for right motor */
+     switch(control) {
+      case CW:
+        digitalWrite(RightMotorControlA1Pin, HIGH);
+        digitalWrite(RightMotorControlA2Pin, LOW);
+        break;
+      case CCW:
+        digitalWrite(RightMotorControlA1Pin, LOW);
+        digitalWrite(RightMotorControlA2Pin, HIGH);
+        break;
+      case STOP:
+        analogWrite(RightMotorSpeedPin, 255);
+        digitalWrite(RightMotorControlA1Pin, LOW);
+        digitalWrite(RightMotorControlA2Pin, LOW);
+        break;
+      case COAST:
+        analogWrite(RightMotorSpeedPin, 0);
+        break;
+      default:
+        // Dun goofed my dude
+        break;
+     }
      break;
     default:
      break;

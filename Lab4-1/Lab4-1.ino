@@ -20,17 +20,21 @@ void setup() {
 }
 
 void loop() {
-  // set left motor CW
-  digitalWrite(leftMotorControlA3Pin, HIGH);
-  digitalWrite(leftMotorControlA4Pin, LOW);
+  // set left motor CCW
+  digitalWrite(leftMotorControlA3Pin, LOW);
+  digitalWrite(leftMotorControlA4Pin, HIGH);
   // set left motor speed
   analogWrite(leftMotorSpeedPin, leftMotorSpeed);
 
+  delay(3000);
+
+  // right motor CCW
+  digitalWrite(rightMotorControlA1Pin, LOW); // Right motor CCW
+  digitalWrite(rightMotorControlA2Pin, HIGH);
   // set right motor direction
+  analogWrite(rightMotorSpeedPin, rightMotorSpeed);
 
-  // set right motor speed
-
-  delay(1000);
+  delay(3000);
 
   // Motor direction and speed commands (additional)
   
