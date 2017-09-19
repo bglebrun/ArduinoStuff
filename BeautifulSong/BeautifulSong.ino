@@ -1,13 +1,13 @@
 /*
-  Arduino Mario Bros Tunes
+  Arduino A Beautiful Song - Nier Automata
   With Piezo Buzzer and PWM
-  by: Dipto Pratyaksa
-  last updated: 31/3/13
+  by: Benjamin LeBrun
+  last updated: 9/18/17
 */
 #include <pitches.h>
 
 #define melodyPin 3
-//Mario main theme melody
+// main theme melody
 int melody[] = {
   NOTE_FS4, NOTE_E4, 0, NOTE_E4, NOTE_FS4, NOTE_G4,
   NOTE_A4, NOTE_B4, NOTE_FS4, 0,
@@ -49,7 +49,7 @@ int melody[] = {
   NOTE_FS4,NOTE_E4,NOTE_E4, NOTE_FS4,NOTE_E4,NOTE_E4, NOTE_FS4,NOTE_E4,NOTE_E4, NOTE_FS4,NOTE_E4,NOTE_E4, NOTE_FS4, NOTE_E4, NOTE_E4, NOTE_FS4, NOTE_G4, 0,
   NOTE_G4,NOTE_FS4,NOTE_FS4, NOTE_G4,NOTE_FS4,NOTE_FS4, NOTE_G4,NOTE_FS4,NOTE_FS4, NOTE_G4,NOTE_FS4,NOTE_FS4, NOTE_G4, NOTE_FS4, NOTE_FS4, NOTE_G4, NOTE_A4, 0,
 };
-//Mario main them tempo
+// main them tempo
 int tempo[] = {
  4, 4, 8, 8, 8, 8,
  8, 8, 2, 4,
