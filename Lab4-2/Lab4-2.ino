@@ -7,6 +7,9 @@ const int RightMotorSpeedPin = 6;
 const int RightMotorControlA3Pin = 8;
 const int RightMotorControlA4Pin = 7;
 
+int leftMotorBias = 230;
+int rightMotorBias = 255;
+
 int LeftMotorSpeed; // PWM values from 0 to 255
 int RightMotorSpeed;
 
@@ -30,17 +33,17 @@ void hBridge (motorType motor, controlType control) {
       switch (control) {
         case CW:
           // set the Left Motor CW
-          digitalWrite(LeftMotorControlA1Pin, HIGH);   // sets the Left Motor CW
-          digitalWrite(LeftMotorControlA2Pin, LOW);
+          digitalWrite(LeftMotorControlA1Pin, LOW);   // sets the Left Motor CW
+          digitalWrite(LeftMotorControlA2Pin, HIGH);
           break;
         case CCW:
           // set the Left Motor CCW
-          digitalWrite(LeftMotorControlA1Pin, LOW);   // sets the Left Motor CCW
-          digitalWrite(LeftMotorControlA2Pin, HIGH);
+          digitalWrite(LeftMotorControlA1Pin, HIGH);   // sets the Left Motor CCW
+          digitalWrite(LeftMotorControlA2Pin, LOW);
           break;
         case STOP:
           // set the Left Motor stop
-          analogWrite(LeftMotorSpeedPin, 255);        // set Left Motor enable high for braking
+          analogWrite(LeftMotorSpeedPin, leftMotorBias);        // set Left Motor enable high for braking
           digitalWrite(LeftMotorControlA1Pin, LOW);
           digitalWrite(LeftMotorControlA2Pin, LOW);
           break;
@@ -56,15 +59,15 @@ void hBridge (motorType motor, controlType control) {
      /* Your code here for right motor */
      switch(control) {
       case CW:
-        digitalWrite(RightMotorControlA3Pin, HIGH);
-        digitalWrite(RightMotorControlA4Pin, LOW);
-        break;
-      case CCW:
         digitalWrite(RightMotorControlA3Pin, LOW);
         digitalWrite(RightMotorControlA4Pin, HIGH);
         break;
+      case CCW:
+        digitalWrite(RightMotorControlA3Pin, HIGH);
+        digitalWrite(RightMotorControlA4Pin, LOW);
+        break;
       case STOP:
-        analogWrite(RightMotorSpeedPin, 255);
+        analogWrite(RightMotorSpeedPin, rightMotorBias);
         digitalWrite(RightMotorControlA3Pin, LOW);
         digitalWrite(RightMotorControlA4Pin, LOW);
         break;
@@ -85,8 +88,8 @@ void setup() {
   // put your setup code here, to run once:
   hBridgeInit();
   
-  LeftMotorSpeed = 128;    // Initial speed
-  RightMotorSpeed = 128;  // Initial speed
+  LeftMotorSpeed = 230;    // Initial speed
+  RightMotorSpeed = 255;  // Initial speed
   
   hBridge(LEFT_MOTOR, CW);
   hBridge(RIGHT_MOTOR, CW);
@@ -99,7 +102,12 @@ void setup() {
 
 void loop() {
   /* Your code here to control the robot in a timed path including forward and reverse */
-
+ spinLeft();
+ delay(3000);
+ spinRight();
+ delay(3000);
+ forward();
+ delay(3000);
 }
 
 void spinLeft() {
@@ -109,6 +117,11 @@ void spinLeft() {
 
 void spinRight() {
   hBridge(RIGHT_MOTOR, CCW);
+  hBridge(LEFT_MOTOR, CW);
+}
+
+void forward() {
+  hBridge(RIGHT_MOTOR, CW);
   hBridge(LEFT_MOTOR, CW);
 }
 
